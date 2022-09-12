@@ -1,0 +1,74 @@
+header{
+    text-align: center;
+    background-color: skyblue;
+    width: 100vw;
+    height: 15vh;
+    position:static;
+}
+
+main{
+
+    height: 100vh;
+    width: 80vw;
+    margin: .5rem;
+}
+
+aside{
+
+    height: 100vh;
+    width: 20vw;
+    margin: .5rem;
+}
+#info{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+ 
+}
+
+#currentCity{
+margin: .5rem;
+}
+#cityForecast{
+    margin: .5rem;
+} 
+#cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.card {
+    box-shadow: 0 4px 8px 0 black;
+    transition: 0.3s;
+    width: 15%;
+    height: 10rem;
+  }
+  
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+.container {
+    padding: 2px 16px;
+}
+#today{
+    width: 100%;
+}
+
+#search h1{
+    font-size: 2rem;
+}
+#search{
+    align-content: center;
+}
+#searchHistory{
+    border-top: .25rem solid black;
+    text-align: center;
+}
+#searchHistory p{
+    color: white;
+    background-color: grey;
+    border-radius: .5rem;
+}

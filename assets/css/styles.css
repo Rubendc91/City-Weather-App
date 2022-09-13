@@ -30,6 +30,7 @@ aside{
 
 #currentCity{
 margin: .5rem;
+width: 100%;
 }
 #cityForecast{
     margin: .5rem;
@@ -39,11 +40,17 @@ margin: .5rem;
     flex-direction: row;
     justify-content: space-evenly;
 }
+#day1,
+#day2,
+#day3,
+#day4,
+#day5{
+    width: 15%;
+}
 .card {
     box-shadow: 0 4px 8px 0 black;
     transition: 0.3s;
-    width: 15%;
-    height: 10rem;
+    /* width: 15%; */
   }
   
 .card:hover {
@@ -58,7 +65,7 @@ margin: .5rem;
 }
 
 #search h1{
-    font-size: 2rem;
+    font-size: 1rem;
 }
 #search{
     align-content: center;

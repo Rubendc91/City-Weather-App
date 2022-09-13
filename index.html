@@ -16,54 +16,60 @@
     <section id="info">
         <main>
             <section id="currentCity">
-                <section id="today" class="card">
-                    <h2>Todays weather in "city"</h2>
-                    <section class="container">
-
+                <section class="card">
+                    <h2 id="today"></h2>
+                    <section id="todaysWeather" class="container">
+                        
                     </section>
                 </section>
             </section>
-            <Section id="cityForecast">
-                <h2>Forcast for "city"</h2>
+            <Section id="cityForecast"></Section>
                 <section id="cards">
                     <section id="day1" class="card">
-
-                        <section class="container">
+                       
+                        <section id="day1container"class="container">
 
                         </section>
                     </section>
+
                     <section id="day2" class="card">
 
-                        <section class="container">
+                        <section id="day2container"class="container">
 
                         </section>
                     </section>
+
                     <section id="day3" class="card">
 
-                        <section class="container">
+                        <section id="day3container"class="container">
 
                         </section>
                     </section>
+
                     <section id="day4" class="card">
 
-                        <section class="container">
+                        <section id="day4container"class="container">
 
                         </section>
                     </section>
+
                     <section id="day5" class="card">
 
-                        <section class="container">
+                        <section id="day5container"class="container">
 
                         </section>
                     </section>
                 </section>
-            </Section>
         </main>
+
         <aside>
-            <form id="search">
-               <h1>Enter City:<input id="searchInput" type="text"><button>Search</button></h1>
-              
+
+            <form id="searchForm">
+            <h1>Enter City:</h1><input id="searchInput" 
+            type="text" placeholder="Columbus">
+            <button type="submit">Search</button>
             </form>
+
             <section id="searchHistory">
                 <h3>Search History</h3>
                 <p>test</p>
@@ -71,4 +77,6 @@
         </aside>
     </Section>
 </body>
+<script src="./assets/js/config.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

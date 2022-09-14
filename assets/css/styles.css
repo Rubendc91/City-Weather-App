@@ -7,7 +7,7 @@ header{
 }
 
 main{
-
+    /* visibility: hidden; */
     height: 100vh;
     width: 80vw;
     margin: .5rem;
@@ -76,7 +76,6 @@ width: 100%;
     align-content: center;
 }
 #searchHistory{
-    border-top: .25rem solid black;
     text-align: center;
 }
 #searchHistory p{

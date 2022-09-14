@@ -3,16 +3,13 @@
 
 var cityInput = document.getElementById("searchInput");
 var searchForm = document.getElementById("searchForm");
+var searchHistory = document.getElementById("searchHistory")
 
 var Date = moment().format("MMM Do, YYYY HH:MM");
 console.log(Date);
 
 function fetchWeather(lat, lon, city) {
-///adding to history///
-var history = document.createElement("p");
-var historySect = document.getElementById("searchHistory");
-history.textContent = `${city}`;
-historySect.appendChild(history);
+
 ///fecthing weather info///
     var apiURL = `http://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
 
@@ -111,8 +108,76 @@ historySect.appendChild(history);
 
 }
 
+
+searchHistory.addEventListener("click", function(event){
+    event.preventDefault()
+    
+    let clearTodaysWeather = document.getElementById("todaysWeather");
+    while (clearTodaysWeather.firstChild) {
+      clearTodaysWeather.removeChild(clearTodaysWeather.firstChild);
+    }
+
+    let clear5day = document.getElementById("cityForecast");
+    while (clear5day.firstChild) {
+        clear5day.removeChild(clear5day.firstChild);
+    }
+
+    let clearDay1 = document.getElementById("day1container");
+    while (clearDay1.firstChild) {
+        clearDay1.removeChild(clearDay1.firstChild);
+    }
+
+    let clearDay2 = document.getElementById("day2container");
+    while (clearDay2.firstChild) {
+        clearDay2.removeChild(clearDay2.firstChild);
+    }
+
+    let clearDay3 = document.getElementById("day3container");
+    while (clearDay3.firstChild) {
+        clearDay3.removeChild(clearDay3.firstChild);
+    }
+
+    let clearDay4 = document.getElementById("day4container");
+    while (clearDay4.firstChild) {
+        clearDay4.removeChild(clearDay4.firstChild);
+    }
+
+    let clearDay5 = document.getElementById("day5container");
+    while (clearDay5.firstChild) {
+        clearDay5.removeChild(clearDay5.firstChild);
+    }
+
+    var search = event.target.textContent;
+    var currentCity = document.getElementById("today")
+
+    var apiURL = `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${API_KEY}`
+
+    fetch(apiURL).then(function(response){
+    return response.json()
+}).then(function(data){
+        lat = data[0].lat;
+        lon = data[0].lon;
+        city = data[0].city;
+
+        console.log('hello');
+
+
+
+
+        fetchWeather(lat, lon, city)
+            console.log(lat, lon, city);
+        
+
+});
+
+
+
+});
+
+
 searchForm.addEventListener("submit", function(event){
     event.preventDefault();
+    // document.getElementsByTagName("main").attribute.visibility = "hidden";
 
     let clearTodaysWeather = document.getElementById("todaysWeather");
     while (clearTodaysWeather.firstChild) {
@@ -167,7 +232,10 @@ searchForm.addEventListener("submit", function(event){
             console.log(lat, lon, city);
     }    
 })
-
+var history = document.createElement("p");
+var historySect = document.getElementById("searchHistory");
+history.textContent = cityInput.value;
+historySect.appendChild(history);
 searchInput.value = "";
 
 

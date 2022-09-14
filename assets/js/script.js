@@ -9,10 +9,10 @@ console.log(Date);
 
 function fetchWeather(lat, lon, city) {
 ///adding to history///
-    var history = document.createElement("p");
-    var historySect = document.getElementById("searchHistory");
-    history.textContent = `${city}`;
-    historySect.appendChild(history);
+var history = document.createElement("p");
+var historySect = document.getElementById("searchHistory");
+history.textContent = `${city}`;
+historySect.appendChild(history);
 ///fecthing weather info///
     var apiURL = `http://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
 

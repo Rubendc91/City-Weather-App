@@ -4,10 +4,19 @@
 var cityInput = document.getElementById("searchInput");
 var searchForm = document.getElementById("searchForm");
 
-function fetchWeather(lat, lon, city,) {
+var Date = moment().format("MMM Do, YYYY HH:MM");
+console.log(Date);
+
+function fetchWeather(lat, lon, city) {
+///adding to history///
+    var history = document.createElement("p");
+    var historySect = document.getElementById("searchHistory");
+    history.textContent = `${city}`;
+    historySect.appendChild(history);
+///fecthing weather info///
     var apiURL = `http://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
 
-   
+
     fetch(apiURL).then(function(response){
         return response.json()
         
@@ -15,20 +24,29 @@ function fetchWeather(lat, lon, city,) {
 
 }).then(function(data){
 
-    var currentCity = document.getElementById("today")
-    currentCity.textContent = city;
 
+///variables for weather data///
+    var icon = data.current.weather[0].icon;
     var temp = data.current.temp;
     var wind = data.current.wind_speed;
     var humidity = data.current.humidity;
     var uvi = data.current.uvi;
 
-    console.log(wind, temp, humidity, uvi);
+    console.log(wind, temp, humidity, uvi, icon);
+    // var img = document.createElement("img");
+    // img.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;${img}
 
+    document.getElementById('todayIcon').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
+    var currentCity = document.getElementById("today")
+    currentCity.textContent = `${city} ${Date} `;
+
+
+///append data to the page///
     var currentTemp = document.createElement("p");
     var currentWeather = document.getElementById("todaysWeather");
     currentTemp.textContent = `Temp: ${temp} F`;
-    currentWeather.append(currentTemp);
+    currentWeather.appendChild(currentTemp);
 
     var currentWind = document.createElement("p");
     var currentWeather = document.getElementById("todaysWeather");
@@ -46,55 +64,90 @@ function fetchWeather(lat, lon, city,) {
     currentWeather.appendChild(currentUvi);
 
 /////5day//////
-   
-    var dailyForecast = data.daily;
-        
-    console.log(dailyForecast)
-
-    
-    var forecast = document.createElement("h3")
+       var dailyForecast = data.daily;
+    var forecast = document.createElement("h3");
     var ForecastContainer = document.getElementById("cityForecast");
     forecast.textContent = "5 day Forecast";
     ForecastContainer.appendChild(forecast);
-//////need to add icons and date and stop repeting results//////
+///////////////////need to add icons//////////////////////
 
 
-    // var forecastImg = document.createElement("img")
-    // var ForecastImgContainer = document.getElementById("day1");
-    // forecastImg.attr = `<img src="http://openweathermap.org/img/wn/02d@2x.png">`
-    // ForecastImgContainer.append(forecastImg);
+// var dailyIcon = dailyForecast.weather[0].icon;
+// console.log(dailyForecast);
+// console.log(dailyIcon);
+
+//     document.getElementById('day1img').src = `http://openweathermap.org/img/wn/${dailyIcon}@2x.png`;
+
+/////////////////////////////
 
     var currentForecast = document.createElement("p");
     var ForecastContainer = document.getElementById("day1container");
-    currentForecast.textContent = `Temp: ${dailyForecast[0].temp.day} F \n Wind: ${dailyForecast[0].wind_speed} Mph \n Humidity:  ${dailyForecast[0].humidity}` ;
+    currentForecast.textContent = `\n\ Temp: ${dailyForecast[0].temp.day} F \n\ Wind: ${dailyForecast[0].wind_speed} Mph \n\ Humidity:  ${dailyForecast[0].humidity}` ;
     ForecastContainer.appendChild(currentForecast);
 
+    // document.getElementById('day1img').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
     var currentForecast = document.createElement("p");
     var ForecastContainer = document.getElementById("day2container");
-    currentForecast.textContent = `Temp: ${dailyForecast[1].temp.day} F \n Wind: ${dailyForecast[1].wind_speed} Mph \n Humidity:  ${dailyForecast[1].humidity}` ;
+    currentForecast.textContent = `Temp: ${dailyForecast[1].temp.day} F \n\ Wind: ${dailyForecast[1].wind_speed} Mph \n\ Humidity:  ${dailyForecast[1].humidity}` ;
     ForecastContainer.appendChild(currentForecast);
 
     var currentForecast = document.createElement("p");
     var ForecastContainer = document.getElementById("day3container");
-    currentForecast.textContent = `Temp: ${dailyForecast[2].temp.day} F \n Wind: ${dailyForecast[2].wind_speed} Mph \n Humidity:  ${dailyForecast[2].humidity}` ;
+    currentForecast.textContent = `Temp: ${dailyForecast[2].temp.day} F \n\ Wind: ${dailyForecast[2].wind_speed} Mph \n\ Humidity:  ${dailyForecast[2].humidity}` ;
     ForecastContainer.appendChild(currentForecast);
 
     var currentForecast = document.createElement("p");
     var ForecastContainer = document.getElementById("day4container");
-    currentForecast.textContent = `Temp: ${dailyForecast[3].temp.day} F \n Wind: ${dailyForecast[3].wind_speed} Mph \n Humidity:  ${dailyForecast[3].humidity}` ;
+    currentForecast.textContent = `Temp: ${dailyForecast[3].temp.day} F \n\ Wind: ${dailyForecast[3].wind_speed} Mph \n\ Humidity:  ${dailyForecast[3].humidity}` ;
     ForecastContainer.appendChild(currentForecast);
 
     var currentForecast = document.createElement("p");
     var ForecastContainer = document.getElementById("day5container");
-    currentForecast.textContent = `Temp: ${dailyForecast[4].temp.day} F \n Wind: ${dailyForecast[4].wind_speed} Mph \n Humidity:  ${dailyForecast[4].humidity}` ;
-    ForecastContainer.replaceChild(currentForecast);
+    currentForecast.textContent = `Temp: ${dailyForecast[4].temp.day} F \n\ Wind: ${dailyForecast[4].wind_speed} Mph \n\ Humidity:  ${dailyForecast[4].humidity}` ;
+    ForecastContainer.appendChild(currentForecast);
 
 
 })
+
 }
 
 searchForm.addEventListener("submit", function(event){
     event.preventDefault();
+
+    let clearTodaysWeather = document.getElementById("todaysWeather");
+    while (clearTodaysWeather.firstChild) {
+      clearTodaysWeather.removeChild(clearTodaysWeather.firstChild);
+    }
+
+    let clear5day = document.getElementById("cityForecast");
+    while (clear5day.firstChild) {
+        clear5day.removeChild(clear5day.firstChild);
+    }
+
+    let clearDay1 = document.getElementById("day1container");
+    while (clearDay1.firstChild) {
+        clearDay1.removeChild(clearDay1.firstChild);
+    }
+
+    let clearDay2 = document.getElementById("day2container");
+    while (clearDay2.firstChild) {
+        clearDay2.removeChild(clearDay2.firstChild);
+    }
+
+    let clearDay3 = document.getElementById("day3container");
+    while (clearDay3.firstChild) {
+        clearDay3.removeChild(clearDay3.firstChild);
+    }
+
+    let clearDay4 = document.getElementById("day4container");
+    while (clearDay4.firstChild) {
+        clearDay4.removeChild(clearDay4.firstChild);
+    }
+
+    let clearDay5 = document.getElementById("day5container");
+    while (clearDay5.firstChild) {
+        clearDay5.removeChild(clearDay5.firstChild);
+    }
 
     var search = searchInput.value.trim()
 
@@ -112,7 +165,7 @@ searchForm.addEventListener("submit", function(event){
 
         fetchWeather(lat, lon, city)
             console.log(lat, lon, city);
-    }
+    }    
 })
 
 searchInput.value = "";

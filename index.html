@@ -18,14 +18,16 @@
             <section id="currentCity">
                 <section class="card">
                     <h2 id="today"></h2>
+                    <img id="todayIcon" alt="icon">
                     <section id="todaysWeather" class="container">
                         
                     </section>
+
                 </section>
             </section>
             <Section id="cityForecast"></Section>
                 <section id="cards">
-                    <section id="day1" class="card">
+                    <section id="day1" class="card"><img id="day1img" alt="">
                        
                         <section id="day1container"class="container">
 
@@ -66,17 +68,19 @@
 
             <form id="searchForm">
             <h1>Enter City:</h1><input id="searchInput" 
-            type="text" placeholder="Columbus">
+            type="text" placeholder="City">
             <button type="submit">Search</button>
             </form>
 
             <section id="searchHistory">
                 <h3>Search History</h3>
-                <p>test</p>
+
+                
             </section>
         </aside>
     </Section>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="./assets/js/config.js"></script>
 <script src="./assets/js/script.js"></script>
 </html>

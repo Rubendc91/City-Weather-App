@@ -28,7 +28,7 @@ function fetchWeather(lat, lon, city,) {
     var currentTemp = document.createElement("p");
     var currentWeather = document.getElementById("todaysWeather");
     currentTemp.textContent = `Temp: ${temp} F`;
-    currentWeather.append(currentTemp);
+    currentWeather.appendChild(currentTemp);
 
     var currentWind = document.createElement("p");
     var currentWeather = document.getElementById("todaysWeather");
@@ -45,7 +45,7 @@ function fetchWeather(lat, lon, city,) {
     currentUvi.textContent = `UVI: ${uvi} `;
     currentWeather.appendChild(currentUvi);
 
-/////5day//////
+/////5day//////////////////////////////////////
    
     var dailyForecast = data.daily;
         
@@ -86,8 +86,8 @@ function fetchWeather(lat, lon, city,) {
 
     var currentForecast = document.createElement("p");
     var ForecastContainer = document.getElementById("day5container");
-    currentForecast.textContent = `Temp: ${dailyForecast[4].temp.day} F \n Wind: ${dailyForecast[4].wind_speed} Mph \n Humidity:  ${dailyForecast[4].humidity}` ;
-    ForecastContainer.replaceChild(currentForecast);
+    currentForecast.textContent = `Temp: ${dailyForecast[4].temp.day} F  Wind: ${dailyForecast[4].wind_speed} Mph  Humidity:  ${dailyForecast[4].humidity}` ;
+    ForecastContainer.appendChild(currentForecast);
 
 
 })
@@ -96,7 +96,14 @@ function fetchWeather(lat, lon, city,) {
 searchForm.addEventListener("submit", function(event){
     event.preventDefault();
 
-    var search = searchInput.value.trim()
+    currentWeather.removeChild(currentTemp);
+
+    var recentSearch= document.createElement("p");
+    var history = document.getElementById("searchHistory");
+    recentSearch.textContent = cityInput.value;
+    history.appendChild(recentSearch);
+
+    var search = cityInput.value.trim()
 
     var apiURL = `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${API_KEY}`
 
@@ -111,7 +118,8 @@ searchForm.addEventListener("submit", function(event){
         var city = data[0].name
 
         fetchWeather(lat, lon, city)
-            console.log(lat, lon, city);
+            // console.log(lat, lon, city);
+
     }
 })
 

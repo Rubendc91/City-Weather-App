@@ -33,7 +33,7 @@ function fetchWeather(lat, lon, city) {
     // var img = document.createElement("img");
     // img.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;${img}
 
-    document.getElementById('todayIcon').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    document.getElementById('todayIcon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
     var currentCity = document.getElementById("today")
     currentCity.textContent = `${city} ${Date} `;
@@ -150,7 +150,7 @@ searchHistory.addEventListener("click", function(event){
     var search = event.target.textContent;
     var currentCity = document.getElementById("today")
 
-    var apiURL = `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${API_KEY}`
+    var apiURL = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${API_KEY}`
 
     fetch(apiURL).then(function(response){
     return response.json()
@@ -216,7 +216,7 @@ searchForm.addEventListener("submit", function(event){
 
     var search = searchInput.value.trim()
 
-    var apiURL = `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${API_KEY}`
+    var apiURL = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${API_KEY}`
 
     fetch(apiURL).then(function(response){
     return response.json()

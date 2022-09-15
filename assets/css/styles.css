@@ -76,7 +76,9 @@ width: 100%;
     align-content: center;
 }
 #searchHistory{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 #searchHistory p{
     color: white;

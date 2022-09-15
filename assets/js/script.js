@@ -222,7 +222,7 @@ searchForm.addEventListener("submit", function(event){
     return response.json()
 }).then(function(data){
     if(!data.length){
-        alert("Location not found")
+        // alert("Location not found")
     } else {
         var lat = data[0].lat;
         var lon = data[0].lon;
@@ -232,11 +232,33 @@ searchForm.addEventListener("submit", function(event){
             console.log(lat, lon, city);
     }    
 })
+createBtn();
+
+});
+
+function renderHistory() {
+    var history = JSON.parse(localStorage.getItem("history"));
+  searchHistory.textContent = history;
+  searchInput.value = "";
+};
+
+function createBtn(){
+
 var history = document.createElement("p");
 var historySect = document.getElementById("searchHistory");
 history.textContent = cityInput.value;
 historySect.appendChild(history);
-searchInput.value = "";
+
+var event = searchHistory.textContent;
+
+localStorage.setItem("history", JSON.stringify(event));
 
 
-});
+
+
+
+}
+// localStorage.clear();
+console.log(localStorage);
+renderHistory();
+//   console.log(localStorage.getItem("history"));

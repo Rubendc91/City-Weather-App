@@ -1,5 +1,5 @@
 // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+// https://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
 var cityInput = document.getElementById("searchInput");
 var searchForm = document.getElementById("searchForm");
@@ -11,7 +11,7 @@ console.log(Date);
 function fetchWeather(lat, lon, city) {
 
 ///fecthing weather info///
-    var apiURL = `http://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
+    var apiURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
 
 
     fetch(apiURL).then(function(response){
@@ -31,7 +31,7 @@ function fetchWeather(lat, lon, city) {
 
     console.log(wind, temp, humidity, uvi, icon);
     // var img = document.createElement("img");
-    // img.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;${img}
+    // img.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;${img}
 
     document.getElementById('todayIcon').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
@@ -73,7 +73,7 @@ function fetchWeather(lat, lon, city) {
 // console.log(dailyForecast);
 // console.log(dailyIcon);
 
-//     document.getElementById('day1img').src = `http://openweathermap.org/img/wn/${dailyIcon}@2x.png`;
+//     document.getElementById('day1img').src = `https://openweathermap.org/img/wn/${dailyIcon}@2x.png`;
 
 /////////////////////////////
 
@@ -82,7 +82,7 @@ function fetchWeather(lat, lon, city) {
     currentForecast.textContent = `\n\ Temp: ${dailyForecast[0].temp.day} F \n\ Wind: ${dailyForecast[0].wind_speed} Mph \n\ Humidity:  ${dailyForecast[0].humidity}` ;
     ForecastContainer.appendChild(currentForecast);
 
-    // document.getElementById('day1img').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    // document.getElementById('day1img').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     var currentForecast = document.createElement("p");
     var ForecastContainer = document.getElementById("day2container");
     currentForecast.textContent = `Temp: ${dailyForecast[1].temp.day} F \n\ Wind: ${dailyForecast[1].wind_speed} Mph \n\ Humidity:  ${dailyForecast[1].humidity}` ;
